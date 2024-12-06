@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Dot Calendar & Pomodoro Timer',
+  title: 'Life Calendar & Pomodoro Timer',
   description: 'Track your time with a beautiful dot calendar and pomodoro timer',
 };
 

@@ -15,7 +15,7 @@ export default function Home() {
         className="max-w-7xl mx-auto space-y-8"
       >
         <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-bold text-foreground">Dot Calendar</h1>
+          <h1 className="text-4xl font-bold text-foreground">Calendar</h1>
           <Settings />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
