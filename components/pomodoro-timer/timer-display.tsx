@@ -13,7 +13,7 @@ export function TimerDisplay({ minutes, seconds, isRunning }: TimerDisplayProps)
   return (
     <motion.div
       className={cn(
-        'text-6xl font-bold text-center p-8 rounded-full w-48 h-48',
+        'text-5xl font-bold text-center  rounded-full',
         'flex items-center justify-center bg-card',
         isRunning && 'text-primary'
       )}

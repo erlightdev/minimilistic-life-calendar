@@ -7,9 +7,10 @@ import dayjs from 'dayjs';
 interface DotProps {
   date: string;
   status: 'empty' | 'filled' | 'current';
+  size: number;
 }
 
-export function Dot({ date, status }: DotProps) {
+export function Dot({ date, status, size }: DotProps) {
   const dotDate = dayjs(date);
   const opacity = dotDate.month() / 12; // Creates gradient effect based on month
 
@@ -23,6 +24,8 @@ export function Dot({ date, status }: DotProps) {
       )}
       style={{
         opacity: 1 - opacity, // Inverts opacity for gradient effect
+        width: size, // Added size style
+        height: size, // Added size style
       }}
       whileHover={{ scale: 1.2 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}

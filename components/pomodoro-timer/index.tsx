@@ -55,7 +55,7 @@ export function PomodoroTimer() {
 
   return (
     <motion.div
-      className="bg-card p-2 rounded-lg shadow-lg flex flex-col items-center space-y-6"
+      className="flex flex-col items-center space-y-6"
       initial={{ scale:1 }}
       animate={{ scale: 1}}
       transition={{ duration: 0.3 }}
