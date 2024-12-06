@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { DotCalendar } from '@/components/dot-calendar';
 import { PomodoroTimer } from '@/components/pomodoro-timer';
 import { Settings } from '@/components/settings';
+import dayjs from 'dayjs';
 
 export default function Home() {
   return (
@@ -14,8 +15,9 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="max-w-7xl mx-auto space-y-8"
       >
-        <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-bold text-foreground">Calendar</h1>
+        <div className="flex justify-end items-center">
+
+          {/* <h1 className="text-4xl font-bold text-foreground">Calendar</h1> */}
           <Settings />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
