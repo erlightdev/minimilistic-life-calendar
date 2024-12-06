@@ -34,19 +34,17 @@ const DigitalClock = ({ timezone = "local" }: DigitalClockProps) => {
 
 	return (
 		<div className="flex flex-col justify-center items-center">
-			{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-			<h1
-				className="hidden md:text-xl font-extrabold text-white text-opacity-70 cursor-pointer  bg-white bg-transparent bg-opacity-10 py-2 px-2 md:px-6 rounded-sm shadow-lg"
-				onClick={toggleFormat} // Toggle format on clock click
-			>
-				{formattedTime}
-			</h1>
-			{/* 
-      <p className="mt-2 text-white opacity-20 ">
-        Switch to {is24HourFormat ? '12-hour' : '24-hour'} format
-      </p> 
-      */}
-		</div>
+  {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+  <h1
+    className="font-extrabold text-white text-opacity-70 cursor-pointer bg-white bg-transparent bg-opacity-10 py-2 px-2 md:px-6 rounded-sm shadow-lg"
+    onClick={toggleFormat} // Toggle format on clock click
+  >
+    {formattedTime}
+  </h1>
+  {/* <p className="mt-2 text-white opacity-20 hidden md:block">
+    Switch to {is24HourFormat ? '12-hour' : '24-hour'} format
+  </p> */}
+</div>
 	);
 };
 

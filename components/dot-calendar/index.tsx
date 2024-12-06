@@ -1,4 +1,3 @@
-// components/dot-calendar/index.tsx
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -9,15 +8,12 @@ import { Dot } from './dot';
 dayjs.extend(isLeapYear);
 
 export function DotCalendar() {
-
-   // Determine dot size based on screen width
-   const dotSize = window.innerWidth <= 640 ? 20 : 32; // Mobile size is 20px, desktop size is 32px
-  
   const [now, setNow] = useState(dayjs());
   const [fillPercentage, setFillPercentage] = useState(0);
+  const [dotSize, setDotSize] = useState(32); // Default size for desktop
 
   const startOfYear = useMemo(() => now.startOf('year'), [now]);
-  const daysInYear = useMemo(() => now.isLeapYear() ? 366 : 365, [now]);
+  const daysInYear = useMemo(() => (now.isLeapYear() ? 366 : 365), [now]);
 
   useEffect(() => {
     const calculateFillPercentage = () => {
@@ -37,9 +33,26 @@ export function DotCalendar() {
     return () => clearInterval(interval);
   }, []);
 
+  // Optimize size detection using matchMedia
+  useEffect(() => {
+    const handleSizeChange = () => {
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
+      setDotSize(isMobile ? 20 : 32); // Set 20px for mobile, 32px for desktop
+    };
+
+    // Initial size detection
+    handleSizeChange();
+
+    // Watch for size changes
+    const mediaQuery = window.matchMedia('(max-width: 640px)');
+    mediaQuery.addEventListener('change', handleSizeChange);
+
+    return () => mediaQuery.removeEventListener('change', handleSizeChange);
+  }, []);
+
   return (
     <div className="w-full max-w-7xl mx-auto p-4 space-y-6">
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(20px,1fr))] gap-1 md:grid-cols-[repeat(auto-fill,minmax(32px,1fr))]">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(20px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(32px,1fr))] gap-1">
         {Array.from({ length: daysInYear }, (_, index) => {
           const date = startOfYear.add(index, 'day');
           const today = now.format('YYYY-MM-DD');
@@ -49,7 +62,7 @@ export function DotCalendar() {
             <Dot
               key={dotDate}
               date={dotDate}
-              size={dotSize}
+              size={dotSize} // Pass the optimized size state
               fill={dotDate === today ? fillPercentage : 100}
               status={
                 dotDate === today
