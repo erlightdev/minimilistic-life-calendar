@@ -21,21 +21,22 @@ export default function Home() {
         <div className="grid grid-cols-2 md:grid-cols-2 gap-4 items-center">
           <div className="flex justify-start">
             <h1
-              className="text-2xl md:text-5xl font-extrabold bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent"
+              className="text-2xl md:text-5xl font-extrabold"
             >
               {currentYear} {/* Use the current year here */}
             </h1>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end space-x-4 items-center">
             <DigitalClock />
+            <Settings />
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
           <div className="lg:col-span-2">
             <DotCalendar />
           </div>
-          <div className='justify-between flex items-center'>
-            <Settings />
+          <div className='justify-center flex items-center'>
+           
             <PomodoroTimer />
           </div>
         </div>

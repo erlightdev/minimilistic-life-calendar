@@ -20,14 +20,14 @@ export function Dot({ date, status, size }: DotProps) {
         'w-5 h-5 rounded-full transition-colors duration-200',
         status === 'empty' && 'bg-gray-200 dark:bg-gray-800',
         status === 'filled' && 'bg-primary',
-        status === 'current' && 'bg-primary ring-2 ring-primary ring-offset-2'
+        status === 'current' && 'bg-red-500 ring-2 ring-primary ring-offset-2'
       )}
       style={{
         opacity: 1 - opacity, // Inverts opacity for gradient effect
         width: size, // Added size style
         height: size, // Added size style
       }}
-      whileHover={{ scale: 1.2 }}
+      whileHover={{ scale: 1.1 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     />
   );
