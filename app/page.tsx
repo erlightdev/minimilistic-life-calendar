@@ -27,7 +27,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="flex justify-end space-x-4 items-center">
-            <DigitalClock />
+            <DigitalClock className="hidden md:block text-lg" />
             <Settings />
           </div>
         </div>
