@@ -1,6 +1,7 @@
+// components/dot-calendar/dot.tsx
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import dayjs from 'dayjs';
@@ -14,11 +15,11 @@ interface DotProps {
 
 export function Dot({ date, fill, size, status }: DotProps) {
   const dotDate = dayjs(date);
-  const opacity = dotDate.month() / 12;
-
-  const radius = size / 2 - 2;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference * (1 - fill / 100);
+  
+  // Memoize radius and circumference calculations
+  const radius = useMemo(() => size / 2 - 2, [size]);
+  const circumference = useMemo(() => 2 * Math.PI * radius, [radius]);
+  const strokeDashoffset = useMemo(() => circumference * (1 - fill / 100), [circumference, fill]);
 
   return (
     <motion.div
@@ -31,7 +32,7 @@ export function Dot({ date, fill, size, status }: DotProps) {
       style={{
         width: size,
         height: size,
-        opacity: status === 'current' ? 1 : (1 - opacity),
+        opacity: status === 'current' ? 1 : (1 - dotDate.month() / 12),
       }}
       whileHover={{ scale: 1.1 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}

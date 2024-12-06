@@ -40,14 +40,14 @@ export function Settings() {
 				</DialogHeader>
 				<div className="space-y-4 py-4">
 					<div className="space-y-2">
-						<DateOfBirthCalendar
-							className=""
-							selectedDate={localSettings.dateOfBirth}
-							onDateChange={(date: any) => {
-								console.log("Selected Date:", date); // Debug log
-								setLocalSettings({ ...localSettings, dateOfBirth: date });
-							}}
-						/>
+					<DateOfBirthCalendar
+  className=""
+  selectedDate={localSettings.dateOfBirth ? new Date(localSettings.dateOfBirth) : undefined}
+  onDateChange={(date: Date | undefined) => {        
+    console.log("Selected Date:", date); // Debug log
+    setLocalSettings({ ...localSettings, dateOfBirth: date ? date.toISOString() : undefined });
+  }}
+/>
 					</div>
 					<div className="space-y-2">
 						<Label>Pomodoro Length (minutes)</Label>

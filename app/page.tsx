@@ -11,7 +11,7 @@ export default function Home() {
   const currentYear = dayjs().year(); // Get current year from dayjs
 
   return (
-    <main className="min-h-screen bg-background p-8">
+    <main className="min-h-screen bg-background p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
