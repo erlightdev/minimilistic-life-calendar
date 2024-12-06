@@ -40,7 +40,7 @@ export function Settings() {
 				<div className="space-y-4 py-4">
 					<div className="space-y-2">
 						<DateOfBirthCalendar
-							className="w-full"
+							className=""
 							selectedDate={localSettings.dateOfBirth}
 							onDateChange={(date: any) =>
 								setLocalSettings({ ...localSettings, dateOfBirth: date })

@@ -34,7 +34,7 @@ export function DateOfBirthCalendar({ selectedDate, onDateChange, className }) {
   });
 
   return (
-    <div className={className}>
+    <div className={`w-full ${className}`}>
       <Form {...form}>
         <FormField
           control={form.control}
@@ -47,10 +47,9 @@ export function DateOfBirthCalendar({ selectedDate, onDateChange, className }) {
                   <FormControl>
                     <Button
                       variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
+                      className={`h-10 px-4 py-2 w-full ${cn(
+                        "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                      )}`}
                     >
                       {field.value ? (
                         format(field.value, "PPP")
