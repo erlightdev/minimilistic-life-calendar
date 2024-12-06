@@ -9,6 +9,10 @@ import { Dot } from './dot';
 dayjs.extend(isLeapYear);
 
 export function DotCalendar() {
+
+   // Determine dot size based on screen width
+   const dotSize = window.innerWidth <= 640 ? 20 : 32; // Mobile size is 20px, desktop size is 32px
+  
   const [now, setNow] = useState(dayjs());
   const [fillPercentage, setFillPercentage] = useState(0);
 
@@ -35,7 +39,7 @@ export function DotCalendar() {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 space-y-6">
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(32px,1fr))] gap-1">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(20px,1fr))] gap-1 md:grid-cols-[repeat(auto-fill,minmax(32px,1fr))]">
         {Array.from({ length: daysInYear }, (_, index) => {
           const date = startOfYear.add(index, 'day');
           const today = now.format('YYYY-MM-DD');
@@ -45,7 +49,7 @@ export function DotCalendar() {
             <Dot
               key={dotDate}
               date={dotDate}
-              size={32}
+              size={dotSize}
               fill={dotDate === today ? fillPercentage : 100}
               status={
                 dotDate === today

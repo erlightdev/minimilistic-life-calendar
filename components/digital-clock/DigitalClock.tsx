@@ -36,7 +36,7 @@ const DigitalClock = ({ timezone = "local" }: DigitalClockProps) => {
 		<div className="flex flex-col justify-center items-center">
 			{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<h1
-				className="text-lg md:text-xl font-extrabold text-white text-opacity-70 cursor-pointer  bg-white bg-transparent bg-opacity-10 py-2 px-2 md:px-6 rounded-sm shadow-lg"
+				className="hidden md:text-xl font-extrabold text-white text-opacity-70 cursor-pointer  bg-white bg-transparent bg-opacity-10 py-2 px-2 md:px-6 rounded-sm shadow-lg"
 				onClick={toggleFormat} // Toggle format on clock click
 			>
 				{formattedTime}
