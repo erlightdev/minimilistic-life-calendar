@@ -1,5 +1,6 @@
-// components/dot-calendar/index.tsx
-import React, { useState, useEffect } from 'react';
+'use client';
+
+import React, { useState, useEffect, useMemo } from 'react';
 import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear';
 import { Dot } from './dot';
@@ -7,23 +8,29 @@ import { Dot } from './dot';
 dayjs.extend(isLeapYear);
 
 export function DotCalendar() {
-  const now = dayjs();
-  const startOfYear = now.startOf('year');
-  const daysInYear = now.isLeapYear() ? 366 : 365;
-
+  const [now, setNow] = useState(dayjs());
   const [fillPercentage, setFillPercentage] = useState(0);
+
+  const startOfYear = useMemo(() => now.startOf('year'), [now]);
+  const daysInYear = useMemo(() => now.isLeapYear() ? 366 : 365, [now]);
 
   useEffect(() => {
     const calculateFillPercentage = () => {
-      const startOfDay = now.startOf('day');
-      const endOfDay = now.endOf('day');
+      const currentTime = dayjs();
+      const startOfDay = currentTime.startOf('day');
+      const endOfDay = currentTime.endOf('day');
       const totalSecondsInDay = endOfDay.diff(startOfDay, 'seconds');
-      const secondsPassed = now.diff(startOfDay, 'seconds');
-      return (secondsPassed / totalSecondsInDay) * 100; // Percentage of the day passed
+      const secondsPassed = currentTime.diff(startOfDay, 'seconds');
+      return (secondsPassed / totalSecondsInDay) * 100;
     };
 
-    setFillPercentage(calculateFillPercentage());
-  }, [now]);
+    const interval = setInterval(() => {
+      setNow(dayjs());
+      setFillPercentage(calculateFillPercentage());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 space-y-6">
@@ -37,8 +44,8 @@ export function DotCalendar() {
             <Dot
               key={dotDate}
               date={dotDate}
-              size={32} // Pass the dot size here
-              fill={dotDate === today ? fillPercentage : 100} // Fill current day based on time passed, previous days filled completely
+              size={32}
+              fill={dotDate === today ? fillPercentage : 100}
               status={
                 dotDate === today
                   ? 'current'
