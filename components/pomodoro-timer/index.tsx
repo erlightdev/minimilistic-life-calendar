@@ -57,7 +57,7 @@ export function PomodoroTimer() {
 		<div className="flex flex-col items-center space-y-6">
 			{/* <h2 className="text-2xl font-bold">Pomodoro Timer</h2> */}
 			<div className="flex items-center space-x-4 justify-between">
-				<div className="p-2">
+				<div className="">
 					<TimerDisplay
 						minutes={minutes}
 						seconds={seconds}
