@@ -22,9 +22,10 @@ export function Settings() {
 	const [localSettings, setLocalSettings] = useState(settings);
 
 	const handleSave = () => {
-		updateSettings(localSettings);
-		setIsOpen(false);
-	};
+    console.log("Saving settings:", localSettings); // Debug log
+    updateSettings(localSettings);
+    setIsOpen(false);
+  };
 
 	return (
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -42,9 +43,10 @@ export function Settings() {
 						<DateOfBirthCalendar
 							className=""
 							selectedDate={localSettings.dateOfBirth}
-							onDateChange={(date: any) =>
-								setLocalSettings({ ...localSettings, dateOfBirth: date })
-							}
+							onDateChange={(date: any) => {
+								console.log("Selected Date:", date); // Debug log
+								setLocalSettings({ ...localSettings, dateOfBirth: date });
+							}}
 						/>
 					</div>
 					<div className="space-y-2">
