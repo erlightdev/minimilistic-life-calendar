@@ -56,18 +56,21 @@ export function PomodoroTimer() {
   return (
     <motion.div
       className="bg-card p-6 rounded-lg shadow-lg flex flex-col items-center space-y-6"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ scale:1 }}
+      animate={{ scale: 1}}
+      transition={{ duration: 0.3 }}
     >
-      <h2 className="text-2xl font-bold">Pomodoro Timer</h2>
-      <TimerDisplay minutes={minutes} seconds={seconds} isRunning={isRunning} />
-      <div className="flex space-x-4">
-        <Button onClick={toggleTimer} size="lg">
-          {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-        </Button>
-        <Button onClick={resetTimer} variant="outline" size="lg">
-          <RotateCcw className="w-4 h-4" />
-        </Button>
+      {/* <h2 className="text-2xl font-bold">Pomodoro Timer</h2> */}
+      <div className="flex items-center space-x-4">
+        <TimerDisplay minutes={minutes} seconds={seconds} isRunning={isRunning} />
+        <div className="flex space-x-4">
+          <Button onClick={toggleTimer} size="lg">
+            {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+          </Button>
+          <Button onClick={resetTimer} variant="outline" size="lg">
+            <RotateCcw className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
     </motion.div>
   );
